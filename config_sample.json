@@ -27,5 +27,9 @@
 	},
 	"verbose": "True",
 	"output": "./data",
+	"mongodb": {
+		"url": "",
+		"db": "db"
+	},
 	"archive_output": "./data"
 }
