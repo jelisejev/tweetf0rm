@@ -69,13 +69,19 @@ class Scheduler(object):
 				"output_folder" : config["output"]
 			}
 		}
+		mongo_handler_config = {
+			"name": "MongoDBHandler",
+			"args": {
+				"config" : config["mongodb"]
+			}
+		}
 
 		crawler_id = apikeys['app_key']
 		logger.debug('creating a new crawler: %s'%crawler_id)
 		if (not crawler_proxies):
 			crawler_proxies = next(self.proxy_generator) if self.proxy_generator else None
 
-		crawler = TwitterCrawler(node_id, crawler_id, copy.copy(apikeys), handlers=[create_handler(file_handler_config)], redis_config=copy.copy(config['redis_config']), proxies=crawler_proxies)
+		crawler = TwitterCrawler(node_id, crawler_id, copy.copy(apikeys), handlers=[create_handler(file_handler_config), create_handler(mongo_handler_config)], redis_config=copy.copy(config['redis_config']), proxies=crawler_proxies)
 		
 		if (crawler_id in self.crawlers):
 			#self.crawlers[crawler_id].clear()

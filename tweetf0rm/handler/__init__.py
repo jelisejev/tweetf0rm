@@ -1,7 +1,8 @@
 
 from inmemory_handler import InMemoryHandler
 from file_handler import FileHandler
-__all__ = ["InMemoryHandler", "FileHandler"]
+from mongodb_handler import MongoDBHandler
+__all__ = ["InMemoryHandler", "FileHandler", "MongoDBHandler"]
 
 import copy
 avaliable_handlers = copy.copy(__all__)
